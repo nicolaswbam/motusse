@@ -43,7 +43,7 @@ export const Game = () => {
           ))}
         </Box>
       </Box>
-      <Keyboard />
+      <Keyboard onKeyPress={console.log} />
     </Box>
   );
 };

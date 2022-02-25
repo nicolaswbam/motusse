@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Box, Text } from "../../theme/components";
 
@@ -21,7 +22,11 @@ const getKeyWidthFactor = (key: string): number => {
   }
 };
 
-export const Keyboard = () => {
+interface Props {
+  onKeyPress: (key: string) => void;
+}
+
+export const Keyboard = ({ onKeyPress }: Props) => {
   return (
     <SafeAreaView edges={["bottom"]}>
       <Box padding="s">
@@ -34,17 +39,23 @@ export const Keyboard = () => {
                 height={KEY_HEIGHT}
                 padding="xs"
               >
-                <Box
-                  borderRadius={4}
-                  backgroundColor="background.keys"
-                  flex={1}
-                  alignItems="center"
-                  justifyContent="center"
+                <TouchableOpacity
+                  onPress={() => onKeyPress(key)}
+                  activeOpacity={0.7}
                 >
-                  <Text textTransform="uppercase" fontFamily="Mytupi">
-                    {key}
-                  </Text>
-                </Box>
+                  <Box
+                    borderRadius={4}
+                    backgroundColor="background.keys"
+                    height="100%"
+                    width="100%"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Text textTransform="uppercase" fontFamily="Mytupi">
+                      {key}
+                    </Text>
+                  </Box>
+                </TouchableOpacity>
               </Box>
             ))}
           </Box>
