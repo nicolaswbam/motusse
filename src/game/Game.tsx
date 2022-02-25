@@ -11,14 +11,23 @@ export const Game = () => {
 
   const defaultWord = ".".repeat(wordLength);
 
-  const [attempts] = useState<Tuple<string, typeof MAX_ATTEMPTS>>([
+  const attempts: Tuple<string, typeof MAX_ATTEMPTS> = [
+    "maltais",
+    "motards",
+    "motocar",
+    "motusse",
     defaultWord,
     defaultWord,
-    defaultWord,
-    defaultWord,
-    defaultWord,
-    defaultWord,
-  ]);
+  ];
+
+  const validations: Tuple<string, typeof MAX_ATTEMPTS> = [
+    "oxx-xx-",
+    "oooxxx-",
+    "oooxxxx",
+    "ooooooo",
+    "xxxxxxx",
+    "xxxxxxx",
+  ];
 
   return (
     <Box
@@ -32,7 +41,7 @@ export const Game = () => {
           <WordLine
             word={word}
             key={`attempt_${attemptNumber}`}
-            wordOfTheDay={wordOfTheDay}
+            validation={validations[attemptNumber]}
           />
         ))}
       </Box>

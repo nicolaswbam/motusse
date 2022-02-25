@@ -1,23 +1,22 @@
 import React from "react";
 import { Box, Text } from "../../theme/components";
+import { ValidationStatus } from "../types";
 
 const SIZE = 40;
 
 interface Props {
   letter: string;
   index: number;
-  wordOfTheDay: string;
+  validationStatus: ValidationStatus;
 }
-export const LetterBox = ({ letter, index, wordOfTheDay }: Props) => {
+export const LetterBox = ({ letter, index, validationStatus }: Props) => {
   return (
     <Box
       width={SIZE}
       height={SIZE}
       padding="s"
       backgroundColor={
-        letter === wordOfTheDay[index]
-          ? "background.correct"
-          : "background.unused"
+        validationStatus === "o" ? "background.correct" : "background.unused"
       }
       borderWidth={1}
       borderColor="border"
@@ -28,9 +27,7 @@ export const LetterBox = ({ letter, index, wordOfTheDay }: Props) => {
         borderRadius={SIZE / 2}
         flex={1}
         backgroundColor={
-          letter !== wordOfTheDay[index] && wordOfTheDay.includes(letter)
-            ? "background.misplaced"
-            : undefined
+          validationStatus === "-" ? "background.misplaced" : undefined
         }
       >
         <Text

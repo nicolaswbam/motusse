@@ -1,13 +1,14 @@
 import React from "react";
 import { Box } from "../../theme/components";
+import { ValidationStatus } from "../types";
 import { LetterBox } from "./LetterBox";
 
 interface Props {
   word: string;
-  wordOfTheDay: string;
+  validation: string;
 }
 
-export const WordLine = ({ word, wordOfTheDay }: Props) => {
+export const WordLine = ({ word, validation }: Props) => {
   return (
     <Box flexDirection="row" borderColor="border">
       {word.split("").map((letter, index) => (
@@ -15,7 +16,7 @@ export const WordLine = ({ word, wordOfTheDay }: Props) => {
           letter={letter}
           index={index}
           key={`letter_${index}`}
-          wordOfTheDay={wordOfTheDay}
+          validationStatus={validation[index] as ValidationStatus}
         />
       ))}
     </Box>
