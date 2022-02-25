@@ -1,4 +1,5 @@
 import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Box, Text } from "../../theme/components";
 
 const KEY_HEIGHT = 55;
@@ -22,31 +23,33 @@ const getKeyWidthFactor = (key: string): number => {
 
 export const Keyboard = () => {
   return (
-    <Box padding="s">
-      {lines.map((line) => (
-        <Box flexDirection="row" key={line.join("")}>
-          {line.map((key) => (
-            <Box
-              key={key}
-              width={`${getKeyWidthFactor(key) * 10}%`}
-              height={KEY_HEIGHT}
-              padding="xs"
-            >
+    <SafeAreaView edges={["bottom"]}>
+      <Box padding="s">
+        {lines.map((line) => (
+          <Box flexDirection="row" key={line.join("")}>
+            {line.map((key) => (
               <Box
-                borderRadius={4}
-                backgroundColor="background.keys"
-                flex={1}
-                alignItems="center"
-                justifyContent="center"
+                key={key}
+                width={`${getKeyWidthFactor(key) * 10}%`}
+                height={KEY_HEIGHT}
+                padding="xs"
               >
-                <Text textTransform="uppercase" fontFamily="Mytupi">
-                  {key}
-                </Text>
+                <Box
+                  borderRadius={4}
+                  backgroundColor="background.keys"
+                  flex={1}
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Text textTransform="uppercase" fontFamily="Mytupi">
+                    {key}
+                  </Text>
+                </Box>
               </Box>
-            </Box>
-          ))}
-        </Box>
-      ))}
-    </Box>
+            ))}
+          </Box>
+        ))}
+      </Box>
+    </SafeAreaView>
   );
 };
