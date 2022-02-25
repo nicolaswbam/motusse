@@ -24,9 +24,25 @@ const getKeyWidthFactor = (key: string): number => {
 
 interface Props {
   onKeyPress: (key: string) => void;
+  onEnterPress: () => void;
+  onDelPress: () => void;
 }
 
-export const Keyboard = ({ onKeyPress }: Props) => {
+export const Keyboard = ({ onKeyPress, onEnterPress, onDelPress }: Props) => {
+  const pressKey = (key: string) => {
+    switch (key) {
+      case "enter":
+        onEnterPress();
+        return;
+      case "del":
+        onDelPress();
+        return;
+      default:
+        onKeyPress(key);
+        return;
+    }
+  };
+
   return (
     <SafeAreaView edges={["bottom"]}>
       <Box padding="s">
@@ -40,7 +56,7 @@ export const Keyboard = ({ onKeyPress }: Props) => {
                 padding="xs"
               >
                 <TouchableOpacity
-                  onPress={() => onKeyPress(key)}
+                  onPress={() => pressKey(key)}
                   activeOpacity={0.7}
                 >
                   <Box

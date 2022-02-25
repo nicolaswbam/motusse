@@ -1,49 +1,40 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import { Box } from "../theme/components";
-import { Tuple } from "../types";
 import { Keyboard } from "./components/Keyboard";
 import { WordLine } from "./components/WordLine";
+import { useGameLogic } from "./logic/reducer";
 
 const MAX_ATTEMPTS = 6;
 
 export const Game = () => {
   const wordOfTheDay = "motusse";
-  const wordLength = wordOfTheDay.length;
 
-  const defaultWord = ".".repeat(wordLength);
+  const {
+    state: gameState,
+    appendLetter,
+    removeLetter,
+  } = useGameLogic(wordOfTheDay);
 
-  const attempts: Tuple<string, typeof MAX_ATTEMPTS> = [
-    "maltais",
-    "motards",
-    "motocar",
-    "motusse",
-    defaultWord,
-    defaultWord,
-  ];
-
-  const validations: Tuple<string, typeof MAX_ATTEMPTS> = [
-    "oxx-xx-",
-    "oooxxx-",
-    "oooxxxx",
-    "ooooooo",
-    "xxxxxxx",
-    "xxxxxxx",
-  ];
+  const { grid, validation } = gameState;
 
   return (
     <Box flex={1} backgroundColor="background.default">
       <Box flex={1} justifyContent="center" alignItems="center">
         <Box borderColor="border" borderWidth={1}>
-          {attempts.map((word, attemptNumber) => (
+          {grid.map((word, attemptNumber) => (
             <WordLine
               word={word}
               key={`attempt_${attemptNumber}`}
-              validation={validations[attemptNumber]}
+              validation={validation[attemptNumber]}
             />
           ))}
         </Box>
       </Box>
-      <Keyboard onKeyPress={console.log} />
+      <Keyboard
+        onKeyPress={appendLetter}
+        onEnterPress={() => {}}
+        onDelPress={removeLetter}
+      />
     </Box>
   );
 };
