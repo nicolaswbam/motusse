@@ -13,6 +13,7 @@ export const Game = () => {
     state: gameState,
     appendLetter,
     removeLetter,
+    validate,
   } = useGameLogic(wordOfTheDay);
 
   const { grid, validation } = gameState;
@@ -32,7 +33,7 @@ export const Game = () => {
       </Box>
       <Keyboard
         onKeyPress={appendLetter}
-        onEnterPress={() => {}}
+        onEnterPress={validate}
         onDelPress={removeLetter}
       />
     </Box>

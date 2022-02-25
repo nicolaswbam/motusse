@@ -34,5 +34,9 @@ export const useGameLogic = (wordOfTheDay: string) => {
     dispatch({ type: "remove" });
   };
 
-  return { state, appendLetter, removeLetter };
+  const validate = () => {
+    dispatch({ type: "validate" });
+  };
+
+  return { state, appendLetter, removeLetter, validate };
 };
