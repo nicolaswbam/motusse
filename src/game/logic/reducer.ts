@@ -110,6 +110,11 @@ export const reducer: Reducer<State, Action> = (state, action) => {
         validation: newValidation,
         validationError: undefined,
       };
+    case "eraseError":
+      return {
+        ...state,
+        validationError: undefined,
+      };
     default:
       return state;
   }

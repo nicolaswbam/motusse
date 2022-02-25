@@ -24,7 +24,12 @@ interface ValidateWordAction {
   type: "validate";
 }
 
+interface EraseErrorAction {
+  type: "eraseError";
+}
+
 export type Action =
   | AppendLetterAction
   | RemoveLetterAction
-  | ValidateWordAction;
+  | ValidateWordAction
+  | EraseErrorAction;

@@ -6,6 +6,7 @@ const palette = {
   yellow: "#fdb709",
   red: "#ce1429",
   lightGrey: "#c0c0c0",
+  translucidBlack: "#000000c0",
 } as const;
 
 export const theme = createTheme({
@@ -15,6 +16,7 @@ export const theme = createTheme({
     "background.misplaced": palette.yellow,
     "background.correct": palette.red,
     "background.keys": palette.white,
+    "background.overlay": palette.translucidBlack,
     letter: palette.white,
     border: palette.white,
   },
@@ -23,6 +25,7 @@ export const theme = createTheme({
     s: 4,
     m: 8,
     l: 12,
+    xxxl: 24,
   },
   breakpoints: {
     phone: 0,

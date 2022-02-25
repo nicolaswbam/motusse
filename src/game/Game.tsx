@@ -1,10 +1,9 @@
 import React, { useReducer, useState } from "react";
+import { Popup } from "./components/Popup";
 import { Box } from "../theme/components";
 import { Keyboard } from "./components/Keyboard";
 import { WordLine } from "./components/WordLine";
 import { useGameLogic } from "./logic/useGameLogic";
-
-const MAX_ATTEMPTS = 6;
 
 export const Game = () => {
   const wordOfTheDay = "motusse";
@@ -14,9 +13,10 @@ export const Game = () => {
     appendLetter,
     removeLetter,
     validate,
+    hideError,
   } = useGameLogic(wordOfTheDay);
 
-  const { grid, validation } = gameState;
+  const { grid, validation, validationError } = gameState;
 
   return (
     <Box flex={1} backgroundColor="background.default">
@@ -33,9 +33,18 @@ export const Game = () => {
       </Box>
       <Keyboard
         onKeyPress={appendLetter}
-        onEnterPress={validate}
+        onEnterPress={() => {
+          if (!validationError) validate();
+        }}
         onDelPress={removeLetter}
       />
+      {validationError && (
+        <Popup
+          text={"Le mot proposé\nest trop petit"}
+          timeout={2000}
+          onClose={hideError}
+        />
+      )}
     </Box>
   );
 };
