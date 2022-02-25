@@ -14,10 +14,12 @@ export const theme = createTheme({
     "background.unused": palette.blue,
     "background.misplaced": palette.yellow,
     "background.correct": palette.red,
+    "background.keys": palette.white,
     letter: palette.white,
     border: palette.white,
   },
   spacing: {
+    xs: 2,
     s: 4,
     m: 8,
     l: 12,

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box } from "../theme/components";
 import { Tuple } from "../types";
+import { Keyboard } from "./components/Keyboard";
 import { WordLine } from "./components/WordLine";
 
 const MAX_ATTEMPTS = 6;
@@ -30,21 +31,19 @@ export const Game = () => {
   ];
 
   return (
-    <Box
-      flex={1}
-      backgroundColor="background.default"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Box borderColor="border" borderWidth={1}>
-        {attempts.map((word, attemptNumber) => (
-          <WordLine
-            word={word}
-            key={`attempt_${attemptNumber}`}
-            validation={validations[attemptNumber]}
-          />
-        ))}
+    <Box flex={1} backgroundColor="background.default">
+      <Box flex={1} justifyContent="center" alignItems="center">
+        <Box borderColor="border" borderWidth={1}>
+          {attempts.map((word, attemptNumber) => (
+            <WordLine
+              word={word}
+              key={`attempt_${attemptNumber}`}
+              validation={validations[attemptNumber]}
+            />
+          ))}
+        </Box>
       </Box>
+      <Keyboard />
     </Box>
   );
 };
