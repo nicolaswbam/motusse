@@ -2,7 +2,7 @@ import React, { useReducer, useState } from "react";
 import { Box } from "../theme/components";
 import { Keyboard } from "./components/Keyboard";
 import { WordLine } from "./components/WordLine";
-import { useGameLogic } from "./logic/reducer";
+import { useGameLogic } from "./logic/useGameLogic";
 
 const MAX_ATTEMPTS = 6;
 
