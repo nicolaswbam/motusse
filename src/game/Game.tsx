@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, Text } from "../theme/components";
 import { Tuple } from "../types";
+import { LetterBox } from "./components/LetterBox";
 
 const MAX_ATTEMPTS = 6;
 
@@ -26,29 +27,18 @@ export const Game = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Box borderColor="border" borderWidth={2}>
+      <Box borderColor="border" borderWidth={1}>
         {attempts.map((word, attemptNumber) => (
-          <Box key={`attempt_${attemptNumber}`} flexDirection="row">
+          <Box
+            key={`attempt_${attemptNumber}`}
+            flexDirection="row"
+            borderColor="border"
+          >
             {word.split("").map((letter, index) => (
-              <Box
+              <LetterBox
+                letter={letter}
                 key={`attempt_${attemptNumber}_letter_${index}`}
-                width={40}
-                height={40}
-                backgroundColor="background.unused"
-                alignItems="center"
-                justifyContent="center"
-                borderTopWidth={attemptNumber === 0 ? 0 : 1}
-                borderBottomWidth={
-                  attemptNumber === attempts.length - 1 ? 0 : 1
-                }
-                borderLeftWidth={index === 0 ? 0 : 1}
-                borderRightWidth={index === word.length - 1 ? 0 : 1}
-                borderColor="border"
-              >
-                <Text color="letter" fontFamily="Mytupi">
-                  {letter}
-                </Text>
-              </Box>
+              />
             ))}
           </Box>
         ))}
