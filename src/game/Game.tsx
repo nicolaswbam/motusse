@@ -29,7 +29,11 @@ export const Game = () => {
     >
       <Box borderColor="border" borderWidth={1}>
         {attempts.map((word, attemptNumber) => (
-          <WordLine word={word} key={`attempt_${attemptNumber}`} />
+          <WordLine
+            word={word}
+            key={`attempt_${attemptNumber}`}
+            wordOfTheDay={wordOfTheDay}
+          />
         ))}
       </Box>
     </Box>

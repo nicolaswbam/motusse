@@ -4,13 +4,19 @@ import { LetterBox } from "./LetterBox";
 
 interface Props {
   word: string;
+  wordOfTheDay: string;
 }
 
-export const WordLine = ({ word }: Props) => {
+export const WordLine = ({ word, wordOfTheDay }: Props) => {
   return (
     <Box flexDirection="row" borderColor="border">
       {word.split("").map((letter, index) => (
-        <LetterBox letter={letter} key={`letter_${index}`} />
+        <LetterBox
+          letter={letter}
+          index={index}
+          key={`letter_${index}`}
+          wordOfTheDay={wordOfTheDay}
+        />
       ))}
     </Box>
   );
