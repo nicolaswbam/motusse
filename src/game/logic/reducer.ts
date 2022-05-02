@@ -2,6 +2,7 @@ import { Reducer } from "react";
 import { createLetterMap } from "../../lib/utils";
 import { MAX_ATTEMPTS } from "./constants";
 import { Action, GridLines, State } from "./types";
+import { getInitialState } from "./useGameLogic";
 
 const canAddLetterTo = (word: string, maxLength: number): boolean =>
   word.split("").filter((char) => char != ".").length < maxLength;
@@ -52,7 +53,7 @@ const validateWord = (word: string, wordOfTheDay: string): string => {
 
   // correct letters in the incorrect place
   validateLetters((letter) => wordOfTheDay.includes(letter), "-");
-
+  console.log('val' ,validations);
   return validations.join("");
 };
 
@@ -94,6 +95,7 @@ export const reducer: Reducer<State, Action> = (state, action) => {
         };
       const newValidation: GridLines = [...validation];
       const validatedWord = validateWord(currentAttempt, wordOfTheDay);
+      console.log('validatedWord', validatedWord);
       newValidation[currentAttemptNumber] = validatedWord;
 
       if (currentAttemptNumber < MAX_ATTEMPTS) {
@@ -103,18 +105,23 @@ export const reducer: Reducer<State, Action> = (state, action) => {
         );
       }
 
+      
+
       return {
         ...state,
         currentAttemptNumber: Math.min(currentAttemptNumber + 1, MAX_ATTEMPTS),
         grid: newGrid,
         validation: newValidation,
         validationError: undefined,
+        win : validatedWord === "o".repeat(wordOfTheDay.length)
       };
     case "eraseError":
       return {
         ...state,
         validationError: undefined,
       };
+    case "reset":
+      return getInitialState(wordOfTheDay)
     default:
       return state;
   }

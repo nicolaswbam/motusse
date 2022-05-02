@@ -9,6 +9,7 @@ export interface State {
   grid: GridLines;
   validation: GridLines;
   validationError?: string;
+  win: boolean;
 }
 
 interface AppendLetterAction {
@@ -28,8 +29,13 @@ interface EraseErrorAction {
   type: "eraseError";
 }
 
+interface ResetAction {
+  type: "reset";
+}
+
 export type Action =
   | AppendLetterAction
   | RemoveLetterAction
   | ValidateWordAction
-  | EraseErrorAction;
+  | EraseErrorAction
+  | ResetAction;

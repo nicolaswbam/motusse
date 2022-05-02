@@ -4,5 +4,7 @@ export const createLetterMap = (word: string): Map<string, number> => {
     map.set(letter, (map.get(letter) ?? 0) + 1);
   }
 
+  console.log(map)
+
   return map;
 };

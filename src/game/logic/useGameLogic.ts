@@ -3,7 +3,7 @@ import { MAX_ATTEMPTS } from "./constants";
 import { reducer } from "./reducer";
 import { Action, GridLines, State } from "./types";
 
-const getInitialState = (wordOfTheDay: string): State => {
+export const getInitialState = (wordOfTheDay: string): State => {
   const defaultWord = ".".repeat(wordOfTheDay.length);
   const defaultValidation = "x".repeat(wordOfTheDay.length);
 
@@ -17,6 +17,7 @@ const getInitialState = (wordOfTheDay: string): State => {
       { length: MAX_ATTEMPTS },
       (_) => defaultValidation
     ) as GridLines,
+    win: false,
   };
 };
 
@@ -42,5 +43,9 @@ export const useGameLogic = (wordOfTheDay: string) => {
     dispatch({ type: "eraseError" });
   };
 
-  return { state, appendLetter, removeLetter, validate, hideError };
+  const reset = () => {
+    dispatch({ type: "reset" });
+  };
+
+  return { state, appendLetter, removeLetter, validate, hideError, reset };
 };
