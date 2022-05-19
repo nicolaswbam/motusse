@@ -5,6 +5,7 @@ import { Keyboard } from "./components/Keyboard";
 import { WordLine } from "./components/WordLine";
 import { useGameLogic } from "./logic/useGameLogic";
 import { Text } from "react-native";
+import { WinModal } from "./components/WinModal";
 
 export const Game = () => {
   const wordOfTheDay = "bonjour";
@@ -20,7 +21,7 @@ export const Game = () => {
 
   const { grid, validation, validationError } = gameState;
 
-  if (gameState.win) console.log('win')
+  if (gameState.win) console.log("win");
 
   return (
     <Box flex={1} backgroundColor="background.default">
@@ -33,7 +34,7 @@ export const Game = () => {
               validation={validation[attemptNumber]}
             />
           ))}
-        </Box>  
+        </Box>
       </Box>
       <Text>{JSON.stringify(gameState)}</Text>
       <Keyboard
@@ -43,12 +44,7 @@ export const Game = () => {
         }}
         onDelPress={removeLetter}
       />
-      {gameState.win && 
-        <Popup
-          text={"Gagné !"}
-          timeout={2000}
-          onClose={reset}
-        />}
+      {gameState.win && <WinModal onClose={reset} />}
       {validationError && (
         <Popup
           text={"Le mot proposé\nest trop petit"}

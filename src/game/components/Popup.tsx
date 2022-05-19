@@ -19,7 +19,7 @@ const animateTo = (
 interface Props {
   text: string;
   onClose: () => void;
-  timeout: number;
+  timeout?: number;
 }
 
 const AnimatedBox = Animated.createAnimatedComponent(Box);
