@@ -6,6 +6,7 @@ import { WordLine } from "./components/WordLine";
 import { useGameLogic } from "./logic/useGameLogic";
 import { Text } from "react-native";
 import { WinModal } from "./components/WinModal";
+import { LoseScreen } from "./components/LoseScreen";
 
 export const Game = () => {
   const wordOfTheDay = "bonjour";
@@ -21,7 +22,8 @@ export const Game = () => {
 
   const { grid, validation, validationError } = gameState;
 
-  if (gameState.win) console.log("win");
+  if (gameState.currentAttemptNumber > 5)
+    return <LoseScreen answer={wordOfTheDay} onClose={reset} />;
 
   return (
     <Box flex={1} backgroundColor="background.default">
