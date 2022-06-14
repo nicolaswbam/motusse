@@ -1,3 +1,4 @@
+import React from "react";
 import { ThemeProvider } from "@shopify/restyle";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";

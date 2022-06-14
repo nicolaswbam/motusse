@@ -1,22 +1,22 @@
-import { createTheme } from "@shopify/restyle";
+import { createTheme } from '@shopify/restyle';
 
 const palette = {
-  blue: "#0e6ab9",
-  white: "#ffffff",
-  yellow: "#fdb709",
-  red: "#ce1429",
-  lightGrey: "#c0c0c0",
-  translucidBlack: "#000000c0",
+  blue: '#0e6ab9',
+  white: '#ffffff',
+  yellow: '#fdb709',
+  red: '#ce1429',
+  lightGrey: '#c0c0c0',
+  translucidBlack: '#000000c0',
 } as const;
 
 export const theme = createTheme({
   colors: {
-    "background.default": palette.lightGrey,
-    "background.unused": palette.blue,
-    "background.misplaced": palette.yellow,
-    "background.correct": palette.red,
-    "background.keys": palette.white,
-    "background.overlay": palette.translucidBlack,
+    'background.default': palette.lightGrey,
+    'background.unused': palette.blue,
+    'background.misplaced': palette.yellow,
+    'background.correct': palette.red,
+    'background.keys': palette.white,
+    'background.overlay': palette.translucidBlack,
     letter: palette.white,
     border: palette.white,
   },
