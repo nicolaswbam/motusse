@@ -1,17 +1,17 @@
-import React from "react";
-import { Box } from "../../theme/components";
-import { ValidationStatus } from "../types";
-import { LetterBox } from "./LetterBox";
+import React from 'react';
+import { Box } from '../../theme/components';
+import { ValidationStatus } from '../types';
+import { LetterBox } from './LetterBox';
 
 interface Props {
   word: string;
   validation: string;
 }
 
-export const WordLine = ({ word, validation }: Props) => {
+export function WordLine({ word, validation }: Props) {
   return (
     <Box flexDirection="row" borderColor="border">
-      {word.split("").map((letter, index) => (
+      {word.split('').map((letter, index) => (
         <LetterBox
           letter={letter}
           index={index}
@@ -21,4 +21,4 @@ export const WordLine = ({ word, validation }: Props) => {
       ))}
     </Box>
   );
-};
+}

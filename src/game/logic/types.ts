@@ -1,5 +1,5 @@
-import { Tuple } from "../../types";
-import { MAX_ATTEMPTS } from "./constants";
+import { Tuple } from '../../types';
+import { MAX_ATTEMPTS } from './constants';
 
 export type GridLines = Tuple<string, typeof MAX_ATTEMPTS>;
 
@@ -13,24 +13,24 @@ export interface State {
 }
 
 interface AppendLetterAction {
-  type: "append";
+  type: 'append';
   payload: string;
 }
 
 interface RemoveLetterAction {
-  type: "remove";
+  type: 'remove';
 }
 
 interface ValidateWordAction {
-  type: "validate";
+  type: 'validate';
 }
 
 interface EraseErrorAction {
-  type: "eraseError";
+  type: 'eraseError';
 }
 
 interface ResetAction {
-  type: "reset";
+  type: 'reset';
 }
 
 export type Action =

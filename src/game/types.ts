@@ -1,1 +1,1 @@
-export type ValidationStatus = "o" | "-" | "x";
+export type ValidationStatus = 'o' | '-' | 'x';

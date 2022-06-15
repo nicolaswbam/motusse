@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Box, Text } from "../../theme/components";
-import { ValidationStatus } from "../types";
+import React, { useEffect, useState } from 'react';
+import { Box, Text } from '../../theme/components';
+import { ValidationStatus } from '../types';
 
 const SIZE = 40;
 
@@ -9,7 +9,7 @@ interface Props {
   index: number;
   validationStatus: ValidationStatus;
 }
-export const LetterBox = ({ letter, index, validationStatus }: Props) => {
+export function LetterBox({ letter, index, validationStatus }: Props) {
   const [status, setStatus] = useState(validationStatus);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const LetterBox = ({ letter, index, validationStatus }: Props) => {
       height={SIZE}
       padding="s"
       backgroundColor={
-        status === "o" ? "background.correct" : "background.unused"
+        status === 'o' ? 'background.correct' : 'background.unused'
       }
       borderWidth={1}
       borderColor="border"
@@ -38,7 +38,7 @@ export const LetterBox = ({ letter, index, validationStatus }: Props) => {
         justifyContent="center"
         borderRadius={SIZE / 2}
         flex={1}
-        backgroundColor={status === "-" ? "background.misplaced" : undefined}
+        backgroundColor={status === '-' ? 'background.misplaced' : undefined}
       >
         <Text
           color="letter"
@@ -51,4 +51,4 @@ export const LetterBox = ({ letter, index, validationStatus }: Props) => {
       </Box>
     </Box>
   );
-};
+}

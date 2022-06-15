@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import { Animated } from "react-native";
-import { Box, Text } from "../../theme/components";
+import React, { useEffect, useRef } from 'react';
+import { Animated } from 'react-native';
+import { Box, Text } from '../../theme/components';
 
 const ANIM_DURATION = 200;
 
 const animateTo = (
   node: Animated.Value,
   toValue: number,
-  onEnd?: () => void
+  onEnd?: () => void,
 ) => {
   Animated.timing(node, {
     useNativeDriver: true,
@@ -24,7 +24,7 @@ interface Props {
 
 const AnimatedBox = Animated.createAnimatedComponent(Box);
 
-export const Popup = ({ text, timeout, onClose }: Props) => {
+export function Popup({ text, timeout, onClose }: Props) {
   const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -58,4 +58,4 @@ export const Popup = ({ text, timeout, onClose }: Props) => {
       </Box>
     </AnimatedBox>
   );
-};
+}

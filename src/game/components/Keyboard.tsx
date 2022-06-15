@@ -1,21 +1,21 @@
-import React from "react";
-import { TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Box, Text } from "../../theme/components";
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Box, Text } from '../../theme/components';
 
 const KEY_HEIGHT = 55;
 
 const lines = [
-  ["a", "z", "e", "r", "t", "y", "u", "i", "o", "p"],
-  ["q", "s", "d", "f", "g", "h", "j", "k", "l", "m"],
-  ["enter", "w", "x", "c", "v", "b", "n", "del"],
+  ['a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+  ['q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm'],
+  ['enter', 'w', 'x', 'c', 'v', 'b', 'n', 'del'],
 ];
 
 const getKeyWidthFactor = (key: string): number => {
   switch (key) {
-    case "enter":
+    case 'enter':
       return 2;
-    case "del":
+    case 'del':
       return 2;
     default:
       return 1;
@@ -28,26 +28,25 @@ interface Props {
   onDelPress: () => void;
 }
 
-export const Keyboard = ({ onKeyPress, onEnterPress, onDelPress }: Props) => {
+export function Keyboard({ onKeyPress, onEnterPress, onDelPress }: Props) {
   const pressKey = (key: string) => {
     switch (key) {
-      case "enter":
+      case 'enter':
         onEnterPress();
         return;
-      case "del":
+      case 'del':
         onDelPress();
         return;
       default:
         onKeyPress(key);
-        return;
     }
   };
 
   return (
-    <SafeAreaView edges={["bottom"]}>
+    <SafeAreaView edges={['bottom']}>
       <Box padding="s">
         {lines.map((line) => (
-          <Box flexDirection="row" key={line.join("")}>
+          <Box flexDirection="row" key={line.join('')}>
             {line.map((key) => (
               <Box
                 key={key}
@@ -79,4 +78,4 @@ export const Keyboard = ({ onKeyPress, onEnterPress, onDelPress }: Props) => {
       </Box>
     </SafeAreaView>
   );
-};
+}
