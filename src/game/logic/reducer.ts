@@ -2,7 +2,22 @@ import { Reducer } from 'react';
 import { createLetterMap } from '../../lib/utils';
 import { MAX_ATTEMPTS } from './constants';
 import { Action, GridLines, State } from './types';
-import { getInitialState } from './useGameLogic';
+
+export const getInitialState = (wordOfTheDay: string): State => {
+  const defaultWord = '.';
+  const defaultValidation = 'x'.repeat(wordOfTheDay.length);
+
+  return {
+    wordOfTheDay,
+    currentAttemptNumber: 0,
+    grid: Array.from({ length: MAX_ATTEMPTS }, (_, i) => (i === 0 ? wordOfTheDay[0] : defaultWord)) as GridLines,
+    validation: Array.from(
+      { length: MAX_ATTEMPTS },
+      (_) => defaultValidation,
+    ) as GridLines,
+    win: false,
+  };
+};
 
 const canAddLetterTo = (word: string, maxLength: number): boolean => word.length < maxLength
 
