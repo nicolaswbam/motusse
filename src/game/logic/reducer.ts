@@ -4,23 +4,13 @@ import { MAX_ATTEMPTS } from './constants';
 import { Action, GridLines, State } from './types';
 import { getInitialState } from './useGameLogic';
 
-const canAddLetterTo = (word: string, maxLength: number): boolean => word.split('').filter((char) => char != '.').length < maxLength;
+const canAddLetterTo = (word: string, maxLength: number): boolean => word.length < maxLength
 
-const addLetterTo = (word: string, letter: string, maxLength: number): string => word
-  .split('')
-  .filter((char) => char != '.')
-  .concat(letter)
-  .join('')
-  .padEnd(maxLength, '.');
+const addLetterTo = (word: string, letter: string, maxLength: number): string => word.concat(letter)
 
-const removeLetterFrom = (word: string, maxLength: number): string => word
-  .split('')
-  .filter((char) => char != '.')
-  .slice(0, -1)
-  .join('')
-  .padEnd(maxLength, '.');
+const removeLetterFrom = (word: string, maxLength: number): string => word.slice(0, -1)
 
-const canRemoveLetterFrom = (word: string): boolean => word.split('').filter((char) => char != '.').length > 1;
+const canRemoveLetterFrom = (word: string): boolean => word.length > 1;
 
 const validateWord = (word: string, wordOfTheDay: string): string => {
   const letters = word.split('');
@@ -98,10 +88,7 @@ export const reducer: Reducer<State, Action> = (state, action) => {
       newValidation[currentAttemptNumber] = validatedWord;
 
       if (currentAttemptNumber < MAX_ATTEMPTS) {
-        newGrid[currentAttemptNumber + 1] = wordOfTheDay[0].padEnd(
-          wordOfTheDay.length,
-          '.',
-        );
+        newGrid[currentAttemptNumber + 1] = wordOfTheDay[0];
       }
 
       return {

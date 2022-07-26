@@ -4,13 +4,13 @@ import { reducer } from './reducer';
 import { Action, GridLines, State } from './types';
 
 export const getInitialState = (wordOfTheDay: string): State => {
-  const defaultWord = '.'.repeat(wordOfTheDay.length);
+  const defaultWord = '.';
   const defaultValidation = 'x'.repeat(wordOfTheDay.length);
 
   return {
     wordOfTheDay,
     currentAttemptNumber: 0,
-    grid: Array.from({ length: MAX_ATTEMPTS }, (_, i) => (i === 0 ? wordOfTheDay[0].padEnd(wordOfTheDay.length, '.') : defaultWord)) as GridLines,
+    grid: Array.from({ length: MAX_ATTEMPTS }, (_, i) => (i === 0 ? wordOfTheDay[0] : defaultWord)) as GridLines,
     validation: Array.from(
       { length: MAX_ATTEMPTS },
       (_) => defaultValidation,
