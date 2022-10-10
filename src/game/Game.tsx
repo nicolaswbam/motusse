@@ -1,15 +1,15 @@
-import React, { useReducer, useState } from 'react';
-import { Text } from 'react-native';
-import { Popup } from './components/Popup';
-import { Box } from '../theme/components';
-import { Keyboard } from './components/Keyboard';
-import { WordLine } from './components/WordLine';
-import { useGameLogic } from './logic/useGameLogic';
-import { WinModal } from './components/WinModal';
-import { LoseScreen } from './components/LoseScreen';
+import React, { useReducer, useState } from "react";
+import { Text } from "react-native";
+import { Popup } from "./components/Popup";
+import { Box } from "../theme/components";
+import { Keyboard } from "./components/Keyboard";
+import { WordLine } from "./components/WordLine";
+import { useGameLogic } from "./logic/useGameLogic";
+import { WinModal } from "./components/WinModal";
+import { LoseScreen } from "./components/LoseScreen";
 
 export function Game() {
-  const wordOfTheDay = 'bonjour';
+  const wordOfTheDay = "bonjour";
 
   const {
     state: gameState,
@@ -22,7 +22,8 @@ export function Game() {
 
   const { grid, validation, validationError } = gameState;
 
-  if (gameState.currentAttemptNumber > 5) return <LoseScreen answer={wordOfTheDay} onClose={reset} />;
+  if (gameState.currentAttemptNumber > 5)
+    return <LoseScreen answer={wordOfTheDay} onClose={reset} />;
 
   return (
     <Box flex={1} backgroundColor="background.default">
@@ -31,6 +32,7 @@ export function Game() {
           {grid.map((word, attemptNumber) => (
             <WordLine
               word={word}
+              maxLength={wordOfTheDay.length}
               key={`attempt_${attemptNumber}`}
               validation={validation[attemptNumber]}
             />
@@ -48,7 +50,7 @@ export function Game() {
       {gameState.win && <WinModal onClose={reset} />}
       {validationError && (
         <Popup
-          text={'Le mot proposé\nest trop petit'}
+          text={"Le mot proposé\nest trop petit"}
           timeout={2000}
           onClose={hideError}
         />
